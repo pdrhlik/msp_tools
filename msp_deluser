@@ -1,0 +1,12 @@
+#! /bin/bash
+
+# ===================================================================
+# Delete a user that has been added using msp_adduser.
+# ===================================================================
+
+USERNAME=$1
+
+# Kill all processes of the user
+killall -KILL -u $USERNAME
+# Delete the user including his home directory
+deluser --remove-home $USERNAME

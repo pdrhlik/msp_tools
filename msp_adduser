@@ -1,0 +1,35 @@
+#! /bin/bash
+
+# ===================================================================
+# Create a new remote user who can upload R Shiny Apps using msp_upload.
+# ===================================================================
+
+USERNAME=$1
+
+# Generate an 8 character random password
+PASSWORD="$(pwgen -s 8 1)"
+SHINY_DIR=/home/$USERNAME/ShinyApps
+TEMPLATE=$(envsubst < template.html)
+
+if [ "$USERNAME" == "" ]; then
+	echo "NO USER NAME SUPPLIED"
+	exit
+else
+	echo "Creating user: $USERNAME ($FULLNAME)"
+	echo "User password: $PASSWORD"
+
+	# Create a user
+	useradd $USERNAME -s /bin/bash
+	# Set the user's password
+	echo $USERNAME:$PASSWORD | chpasswd
+	# Make a home directory using a helper
+	mkhomedir_helper $USERNAME
+	# Create a ShinyApps directory
+	mkdir $SHINY_DIR
+	# Copy a sample hello Shiny application
+	cp -R /opt/shiny-server/samples/sample-apps/hello $SHINY_DIR
+	# Create a user specific html page from a template
+	echo $TEMPLATE > $SHINY_DIR/index.html
+
+	echo "USER" $USERNAME " has been created with a password:" $PASSWORD
+fi
