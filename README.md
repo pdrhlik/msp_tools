@@ -4,6 +4,13 @@ Oficiální možnost nahrávání je k dispozici pouze skrze [RStudio Connect](h
 
 Jediná alternativa nahrávání na vlastní server, která je zdarma, je ruční kopírování souborů.
 
+# Instalace
+Programy se nainstalují stažením jednotlivých skriptů. Nejjednodušším způsobem je instalace klonováním tohoto git repozitáře. Na systémech s operačním systémem **Linux** stačí mít nainsalovaný program **git**. Pro použití programu **git** na počítačích se systémem **Windows** doporučujeme stažení programu [**Git Bash**](https://git-scm.com/downloads).
+
+Příkaz k instalaci programů do aktuální složky je `git clone https://github.com/pdrhlik/msp_tools.git`.
+
+Program **msp_upload** je potřeba volat z kořenového adresáře Shiny aplikace.
+
 # msp_upload
 Program nahraje R Shiny aplikaci na vlastní server. Program se volá z kořenového adresáře Shiny aplikace, která musí obsahovat konfigurační soubor **config.cfg**.
 
